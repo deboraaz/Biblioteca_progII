@@ -1,11 +1,10 @@
-all: 
-    ./principal
+all: geraos principal
 
-main: principal.o data.o
-    gcc principal.o data.o -o principal
+principal: main.o biblioteca.o
+    gcc main.o biblioteca.o -o principal
 
-geraos: principal.c data.c
-    gcc -c principal.c data.c
+geraos: main.c biblioteca.c
+    gcc -c main.c biblioteca.c
 
 clean:
     rm -rf *.o principal
