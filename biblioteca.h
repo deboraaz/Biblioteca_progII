@@ -9,5 +9,8 @@ typedef struct{
 
 void CriaBiblioteca(tLivro livros[], int livrosCadastrados);
 void AdicionarLivros(tLivro livros[], int livrosCadastrados);
-void ImprimirLivros(tLivro livros[], int livrosCadastrados);
+void ImprimirLivro(tLivro livros[], int livrosCadastrados);
+void ImprimirTodosLivros(tLivro livros[], int livrosCadastrados);
+void RemoverLivros(tLivro livros[], int livrosCadastrados);
+void BuscarLivros(tLivro livros[], int livrosCadastrados);
 #endif
