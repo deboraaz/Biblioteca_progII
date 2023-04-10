@@ -24,7 +24,13 @@
         }else if(opcao == 2){
           RemoverLivros(livros, livrosCadastrados);
         }else if(opcao == 3){
-          ImprimirLivros(livros, livrosCadastrados);
+          ImprimirTodosLivros(livros, livrosCadastrados);
+        }else if(opcao == 4){
+          BuscarLivros(livros, livrosCadastrados);
+        }else if(opcao == 5){
+          EmprestarLivros(livros, livrosCadastrados);
+        }else if(opcao == 6){
+          DevolverLivros(livros, livrosCadastrados);
         }
     }
 

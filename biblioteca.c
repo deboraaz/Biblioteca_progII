@@ -32,32 +32,35 @@ void AdicionarLivros(tLivro livros[], int livrosCadastrados){
 
 void ImprimirTodosLivros(tLivro livros[], int livrosCadastrados){
     printf("\n LIVROS CADASTRADOS \n");
-    for(int i=0; i<=livrosCadastrados; i++){
-    
+    for(int i=0; i<livrosCadastrados; i++){
+        ImprimirLivro(livros, livrosCadastrados, i);
     }
 }
 
-void ImprimirLivro(tLivro livros[], int livrosCadastrados){
+void ImprimirLivro(tLivro livros[], int livrosCadastrados, int i){
     printf("Livro: %s, Autor: %s, Ano: %d, ID: %d", livros[i].titulo, livros[i].autor, livros[i].anoPublicacao, livros[i].id);
-    if(livros[i].disponivel == 0){
-        printf(", DISPONIVEL\n");
-    }else{
+    if(livros[i].disponivel == 1){
         printf(", INDISPONIVEL\n");
+    }else{
+        printf(", DISPONIVEL\n");
     }
 }
 
 void RemoverLivros(tLivro livros[], int livrosCadastrados){
     char identificacao[100];
+    int identficacaoInteriro;
 
     printf("Informe o Título ou Id para remover o livro: ");
     scanf("%s", identificacao);
 
+    identficacaoInteriro = identificacao - 48;
+
     for(int i=0; i<=livrosCadastrados; i++){
-        if(strcmp(livros[i].titulo, identificacao) == 0 || strcmp(livros[i].id, identificacao)){
-            strcpy(livros[i].titulo, NULL);
-            strcpy(livros[i].autor, NULL);
+        if(strcmp(livros[i].titulo, identificacao) == 0 || livros[i].id == identficacaoInteriro ){
+            strcpy(livros[i].titulo, "Deleted");
+            strcpy(livros[i].autor, " ");
             livros[i].disponivel = 1;
-            livros[i].anoPublicacao = NULL;
+            livros[i].anoPublicacao = 0;
             
             break;
         }
@@ -67,16 +70,47 @@ void RemoverLivros(tLivro livros[], int livrosCadastrados){
 
 void BuscarLivros(tLivro livros[], int livrosCadastrados){
     char livro[100];
+    int id;
 
-    printf("Informe o Título para cuscar o livro: ");
+    printf("Informe o Título para buscar o livro: ");
     scanf("%s", livro);
 
     for(int i=0; i<=livrosCadastrados; i++){
         if(strcmp(livros[i].titulo, livro) == 0){
-            strcpy(livros[i].titulo, NULL);
-            strcpy(livros[i].autor, NULL);
+            id = livros[i].id;
+            ImprimirLivro(livros, livrosCadastrados, id);
+            
+            break;
+        }
+    }
+}
+
+void EmprestarLivros(tLivro livros[], int livrosCadastrados){
+    char livro[100];
+    int id;
+
+    printf("Informe o Título para emprestar o livro: ");
+    scanf("%s", livro);
+
+    for(int i=0; i<=livrosCadastrados; i++){
+        if(strcmp(livros[i].titulo, livro) == 0){
             livros[i].disponivel = 1;
-            livros[i].anoPublicacao = NULL;
+            
+            break;
+        }
+    }
+}
+
+void DevolverLivros(tLivro livros[], int livrosCadastrados){
+    char livro[100];
+    int id;
+
+    printf("Informe o Título para devolver o livro: ");
+    scanf("%s", livro);
+
+    for(int i=0; i<=livrosCadastrados; i++){
+        if(strcmp(livros[i].titulo, livro) == 0){
+            livros[i].disponivel = 0;
             
             break;
         }
